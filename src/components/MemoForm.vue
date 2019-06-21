@@ -1,0 +1,62 @@
+<template>
+  <div>
+    <h5>ようこそ、{{ name }}さん</h5>
+    <form @submit.prevent="memoPost">
+      <label for="memo">メモ</label>
+      <div>
+        <textarea id="memo" cols="30" rows="10" v-model="memo.text"></textarea>
+      </div>
+      <span v-if="error.inValid">メモを入力してください</span>
+      <div>
+        <button type="submit">メモる</button>
+      </div>
+    </form>
+    <MemoList :items="this.memoList"/>
+    <RouterLink to="/">トップに戻る</RouterLink>
+  </div>
+</template>
+
+<script>
+import MemoList from "./MemoList";
+export default {
+  components: {
+    MemoList
+  },
+  computed: {
+    name() {
+      return this.$store.getters["name"];
+    }
+  },
+  data() {
+    return {
+      memo: {
+        id: null,
+        text: ""
+      },
+      error: {
+        inValid: false
+      },
+      memoList: {
+        memos: []
+      }
+    };
+  },
+  methods: {
+    memoPost() {
+      if (this.memo.text === "") {
+        this.error.inValid = true;
+        return;
+      } else {
+        this.error.inValid = false;
+      }
+      const text = this.memo.text;
+      this.memoList.memos.push({
+        id: this.memoList.memos.length + 1,
+        text: text
+      });
+      this.memo.text = "";
+    }
+  }
+};
+</script>
+
