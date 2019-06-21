@@ -11,7 +11,7 @@
         <button type="submit">メモる</button>
       </div>
     </form>
-    <MemoList :items="this.memoList"/>
+    <MemoList :items="this.memoList" @delete="deleteMemo"/>
     <RouterLink to="/">トップに戻る</RouterLink>
   </div>
 </template>
@@ -55,6 +55,12 @@ export default {
         text: text
       });
       this.memo.text = "";
+    },
+    deleteMemo(memoId) {
+      const afterMemos = this.memoList.memos.filter(memo => {
+        return memo.id !== memoId;
+      });
+      this.memoList.memos = afterMemos;
     }
   }
 };
