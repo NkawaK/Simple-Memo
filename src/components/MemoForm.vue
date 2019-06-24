@@ -1,7 +1,7 @@
 <template>
   <div>
     <h5>ようこそ、{{ name }}さん</h5>
-    <form @submit.prevent="memoPost">
+    <form @submit.prevent="postMemo">
       <label for="memo">メモ</label>
       <div>
         <textarea id="memo" cols="30" rows="10" v-model="memo.text"></textarea>
@@ -42,7 +42,7 @@ export default {
     };
   },
   methods: {
-    memoPost() {
+    postMemo() {
       if (this.memo.text === "") {
         this.error.inValid = true;
         return;
@@ -50,8 +50,9 @@ export default {
         this.error.inValid = false;
       }
       const text = this.memo.text;
+      const memosLength = this.memoList.memos.length;
       this.memoList.memos.push({
-        id: this.memoList.memos.length + 1,
+        id: memosLength === 0 ? 0 : this.memoList.memos[memosLength - 1].id + 1,
         text: text
       });
       this.memo.text = "";
