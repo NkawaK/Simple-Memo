@@ -41,6 +41,11 @@ export default {
       }
     };
   },
+  mounted: function() {
+    this.$nextTick(function() {
+      this.memoList.memos = JSON.parse(localStorage.getItem(this.name)) || [];
+    });
+  },
   methods: {
     postMemo() {
       if (this.memo.text === "") {
@@ -62,6 +67,14 @@ export default {
         return memo.id !== memoId;
       });
       this.memoList.memos = afterMemos;
+    }
+  },
+  watch: {
+    memoList: {
+      handler(newVal) {
+        localStorage.setItem(this.name, JSON.stringify(newVal.memos));
+      },
+      deep: true
     }
   }
 };
