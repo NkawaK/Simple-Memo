@@ -5,7 +5,7 @@ URL: https://codesandbox.io/s/github/NkawaK/simple-memo
 
 Vue.jsのSPAとしてCodeSandboxで開発したメモ帳アプリ
 
-Copyright (c) 2020 Kenta Nishikawa
+Copyright (c) 2019-2020 Kenta Nishikawa
 
 https://github.com/NkawaK/Simple-Memo
 
