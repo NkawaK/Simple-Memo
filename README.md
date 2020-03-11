@@ -1,7 +1,7 @@
 Simple-Memo
 ====
 
-URL: https://codesandbox.io/s/github/NkawaK/simple-memo
+URL: https://codesandbox.io/s/spa-sample-08poi
 
 Vue.jsのSPAとしてCodeSandboxで開発したメモ帳アプリ
 
